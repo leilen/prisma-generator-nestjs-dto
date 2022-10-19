@@ -166,14 +166,28 @@ export const makeHelpers = ({
       '\n',
     )}`;
 
-  const fieldToEntityProp = (field: ParsedField) =>
-    `${field.name}${unless(field.isRequired, '?')}: ${fieldType(field)} ${when(
+  const fieldToEntityProp = (
+    field: ParsedField,
+    addStringDecoratorToBigint: boolean,
+  ) =>
+    `${
+      addStringDecoratorToBigint && field.type === 'BigInt'
+        ? `\n@ApiProperty({ type: 'string' })\n`
+        : ''
+    }${field.name}${unless(field.isRequired, '?')}: ${fieldType(field)} ${when(
       field.isNullable,
       ' | null',
     )};`;
 
-  const fieldsToEntityProps = (fields: ParsedField[]) =>
-    `${each(fields, (field) => fieldToEntityProp(field), '\n')}`;
+  const fieldsToEntityProps = (
+    fields: ParsedField[],
+    addStringDecoratorToBigint: boolean,
+  ) =>
+    `${each(
+      fields,
+      (field) => fieldToEntityProp(field, addStringDecoratorToBigint),
+      '\n',
+    )}`;
 
   const apiExtraModels = (names: string[]) =>
     `@ApiExtraModels(${names.map(entityName)})`;

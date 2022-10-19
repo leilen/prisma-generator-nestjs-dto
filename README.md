@@ -44,6 +44,7 @@ generator nestjsDto {
   entityPrefix                    = ""
   entitySuffix                    = ""
   fileNamingStyle                 = "camel"
+  addStringDecoratorToBigint      = "true"
 }
 ```
 
@@ -61,6 +62,7 @@ All parameters are optional.
 - [`entityPrefix`]: (default: `""`) - phrase to prefix every `Entity` class with
 - [`entitySuffix`]: (default: `""`) - phrase to suffix every `Entity` class with
 - [`fileNamingStyle`]: (default: `"camel"`) - how to name generated files. Valid choices are `"camel"`, `"pascal"`, `"kebab"` and `"snake"`.
+- [`addStringDecoratorToBigint`]: (default: `"false"`) - Add [@ApiProperty({ type: 'string' })] to BigInt fields.
 
 ## <a name="annotations"></a>Annotations
 

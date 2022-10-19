@@ -16,6 +16,7 @@ import { NamingStyle, Model, WriteableFileSpecs } from './types';
 interface RunParam {
   output: string;
   dmmf: DMMF.Document;
+  addStringDecoratorToBigint: boolean;
   exportRelationModifierClasses: boolean;
   outputToNestJsResourceStructure: boolean;
   connectDtoPrefix: string;
@@ -35,6 +36,7 @@ export const run = ({
   const {
     exportRelationModifierClasses,
     outputToNestJsResourceStructure,
+    addStringDecoratorToBigint,
     fileNamingStyle = 'camel',
     ...preAndSuffixes
   } = options;
@@ -129,6 +131,7 @@ export const run = ({
       content: generateEntity({
         ...modelParams.entity,
         templateHelpers,
+        addStringDecoratorToBigint,
       }),
     };
     // TODO generate model.struct.ts

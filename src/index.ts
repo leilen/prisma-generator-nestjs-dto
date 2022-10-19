@@ -33,6 +33,7 @@ export const generate = (options: GeneratorOptions) => {
     entitySuffix = '',
     fileNamingStyle = 'camel',
   } = options.generator.config;
+  console.log(options.generator.config);
 
   const exportRelationModifierClasses = stringToBoolean(
     options.generator.config.exportRelationModifierClasses,
@@ -50,6 +51,12 @@ export const generate = (options: GeneratorOptions) => {
     // using `true` as default value would be a breaking change
     false,
   );
+
+  const addStringDecoratorToBigint = stringToBoolean(
+    options.generator.config.addStringDecoratorToBigint,
+    false,
+  );
+  console.log(addStringDecoratorToBigint);
 
   const supportedFileNamingStyles = ['kebab', 'camel', 'pascal', 'snake'];
   const isSupportedFileNamingStyle = (style: string): style is NamingStyle =>
@@ -75,6 +82,7 @@ export const generate = (options: GeneratorOptions) => {
     entityPrefix,
     entitySuffix,
     fileNamingStyle,
+    addStringDecoratorToBigint,
   });
 
   const indexCollections: Record<string, WriteableFileSpecs> = {};

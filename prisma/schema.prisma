@@ -15,6 +15,7 @@ generator nestjsDto {
   entityPrefix                    = ""
   entitySuffix                    = ""
   fileNamingStyle                 = "camel"
+  addStringDecoratorToBigint      = "true"
 }
 
 model Product {
@@ -28,6 +29,7 @@ model Product {
   score       Float?
   categoryId  String   @db.Uuid
   companyId   String   @db.Uuid
+  bbb         BigInt
 
   /// @DtoRelationRequired
   /// @DtoRelationCanConnectOnCreate
