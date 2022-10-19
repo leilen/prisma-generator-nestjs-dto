@@ -13,7 +13,10 @@ export const generateEntity = ({
   addStringDecoratorToBigint,
   templateHelpers: t,
 }: GenerateEntityParam) => `
-${t.importStatements(imports)}
+${t.importStatements(
+  imports,
+  fields.some((v) => v.type === 'BigInt') && addStringDecoratorToBigint,
+)}
 
 ${t.if(apiExtraModels.length, t.apiExtraModels(apiExtraModels))}
 export class ${t.entityName(model.name)} {

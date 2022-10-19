@@ -76,8 +76,15 @@ export const importStatement = (input: ImportStatementParams) => {
   return fragments.join(' ');
 };
 
-export const importStatements = (items: ImportStatementParams[]) =>
-  `${each(items, importStatement, '\n')}`;
+export const importStatements = (
+  items: ImportStatementParams[],
+  addStringDecoratorToBigint: boolean,
+) =>
+  `${
+    addStringDecoratorToBigint
+      ? `import { ApiProperty } from '@nestjs/swagger';\n`
+      : ''
+  }${each(items, importStatement, '\n')}`;
 
 interface MakeHelpersParam {
   connectDtoPrefix: string;
