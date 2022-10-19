@@ -78,7 +78,7 @@ export const importStatement = (input: ImportStatementParams) => {
 
 export const importStatements = (
   items: ImportStatementParams[],
-  addStringDecoratorToBigint: boolean,
+  addStringDecoratorToBigint?: boolean,
 ) =>
   `${
     addStringDecoratorToBigint
